@@ -722,6 +722,16 @@ We also don't prompt for the module name.")
   (erl-send-rpc node
 		'int 'i (list (cadr (assq module edb-interpreted-modules)))))
 
+(defun erl-reload-project (node)
+  (interactive (list (erl-target-node)))
+  (let* ((prj-top-dir (rebar-find-top-dir)))
+    (erl-do-reload-project node prj-top-dir)
+    ))
+(defun erl-do-reload-project (node prj-top-dir)
+  (erl-rpc (lambda (result) 
+             (message "load: %s" result)) nil 
+             node 'distel 'reload_project (list prj-top-dir)))
+
 ;;;; Definition finding
 
 (defvar erl-find-history-ring (make-ring 20)
