@@ -143,8 +143,12 @@ reload_project(RootDir)->
     Dirs = distel_dir:all_ebins(RootDir),
     Filter1 = fun(Dir,Acc)->
                 code:add_patha(Dir),
-                Files = distel_dir:recursive_dir(Dir,file),
-                lists:append(Acc,Files)
+                case distel_dir:recursive_dir(Dir,file) of
+                    {ok,Paths}->
+                        lists:append(Acc,Paths);
+                    _ ->
+                        Acc
+                end
         end,
     Files = lists:foldl(Filter1,[],Dirs),
     Filter2 = fun(File,Acc)->
