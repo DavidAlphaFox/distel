@@ -10,10 +10,8 @@
   (rebar-generate-project project-dir))
   
 (defun rebar-generate-project (project-dir)
-  (progn
-    (set 'default-directory (format "%s" project-dir))
-    (set (make-local-variable 'compile-command) (format "make -f %sMakefile" project-dir))
-    (call-interactively 'compile)))
+  (set (make-local-variable 'compile-command) (format "make -f %sMakefile" project-dir))
+  (call-interactively 'compile))
 
 (defun rebar-find-top-dir-recr (dirname)
       (let* ((project-dir (locate-dominating-file dirname "rebar.config")))
