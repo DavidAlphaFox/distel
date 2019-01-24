@@ -2,7 +2,7 @@ Installation
 ------------
 
 * distel is an extension to erlang-mode, so erlang-mode must be
-  present. erlang-node is distributed with OTP, here;
+  present. erlang-mode is distributed with OTP, here;
 $OTP_PATH/lib/tools-*/emacs/erlang.el
 
   So you must have something like this in you .emacs;
@@ -54,4 +54,3 @@ This procedure is like putting "127.0.0.1 <hostname>" into /etc/hosts
 on a UNIX machine. It's necessary so that Emacs can open sockets to
 the localhost via the hostname part of a nodename without talking to
 DNS.
-
